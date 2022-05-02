@@ -18,7 +18,7 @@ const Contact = () => {
         </div>  
         <div className="input-label">
           <label htmlFor="">Message*</label>
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <textarea name="" id="" cols="30" rows="5"></textarea>
         </div>
         <div className="input-label captcha-box">
           <label htmlFor="">Enter Code Above*</label>

@@ -6,12 +6,16 @@ body {
 .app-container {
   width: 90%;
   margin: auto;
+  position: relative;
 }
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 50px 0;
+  padding-bottom: 0;
+  width: 90%;
+  margin: auto;
 }
 .menu {
   display: flex;
@@ -37,10 +41,10 @@ header {
   background-color: orange;
 }
 .color-palletsmenu-item .green {
-  background-color: green;
+  background-color: lightgreen;
 }
 .color-palletsmenu-item .blue {
-  background-color: blue;
+  background-color: lightblue;
 }
 .color-palletsmenu-item .white {
   background-color: white;
@@ -51,9 +55,10 @@ header {
   border-radius: 17px;
   box-sizing: border-box;
   padding: 30px;
+  margin-top: 50px;
 }
 .message-box p {
-  font-size: 5vw;
+  font-size: 3vw;
 }
 .testimonials {
   display: flex;
@@ -73,6 +78,9 @@ header {
 .testimonials .quates:last-child {
   margin-top: 90px;
 }
+.print-arrea {
+  display: none;
+}
 .testimonials p {
   text-align: center;
   font-size: 26px;
@@ -83,15 +91,16 @@ header {
 }
 .contact-container h1 {
   text-align: center;
+  margin-bottom: 12px;
 }
 .input-label {
   display: flex;
   align-items: baseline;
-  padding: 8px 0;
+  padding: 6px 0;
 }
 .input-label input {
   width: 50%;
-  height: 35px;
+  height: 20px;
 }
 .input-label label {
   font-size: 24px;
@@ -125,10 +134,10 @@ form {
   background-color: orange;
 }
 .bg-green {
-  background-color: green;
+  background-color: lightgreen;
 }
 .bg-blue {
-  background-color: blue;
+  background-color: lightblue;
 }
 .bg-white {
   background-color: white;
@@ -154,11 +163,20 @@ form {
   font-size: 25px;
   cursor: pointer;
 }
+.Demo__some-network button {
+  margin: 0 12px;
+}
+.home-btn {
+  width: 40px;
+  margin-top: 80px;
+  margin-bottom: -90px;
+  margin-left: 5%;
+}
 
 /* ===============footer====================== */
 .footer-container {
   width: 100%;
-  margin-top: 120px;
+  margin-top: 40px;
 }
 .copyright,
 .social-conatainer {
