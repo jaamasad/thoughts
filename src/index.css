@@ -64,7 +64,7 @@ header {
 .testimonials .quates {
   font-size: 11rem;
   color: #037d91;
-  font-family: fangsong;
+  font-family: "fangsong" !important;
   font-weight: 900;
 }
 .testimonials .quates:first-child {
@@ -192,4 +192,21 @@ form {
 .social-icon:hover {
   opacity: 50%;
   cursor: pointer;
+}
+@media screen and (max-width:992px){
+  form{
+    width: 100%;
+  }
+}
+@media screen and (max-width:480px){
+  form{
+    width: 100%;
+    padding: 0;
+  }
+  .color-icon {
+    margin-left: 16px;
+  }
+  .menu-item {
+    padding-right: 16px;
+  }
 }
