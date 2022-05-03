@@ -1,5 +1,6 @@
-import React, { useState, forwardRef, useRef } from "react"
+import React, { useState, forwardRef, useRef, useEffect } from "react"
 // import Print from "./Print"
+import thoughtsList from "../assets/DateData"
 import Social from "./Social"
 import ReactToPrint, { PrintContextConsumer } from "react-to-print"
 
@@ -7,18 +8,35 @@ const THOUGHTS = {
   thoughtHeading: "You are a natural",
   thoughtDesc: "Organize a toy drive this holiday season",
 }
-const Home = () => {
+const Home = ({show}) => {
   const [bgColor, setBgColor] = useState("")
   const [edit, setEdit] = useState(false)
   const [share, setShare] = useState(false)
-  const [tHeading, setTHeading] = useState(THOUGHTS.thoughtHeading)
+  const [tHeading, setTHeading] = useState("")
   const [tDescription, setTDescription] = useState(THOUGHTS.thoughtDesc)
   const [thoughts, setThoughts] = useState({
-    thoughtHeading: THOUGHTS.thoughtHeading,
+    thoughtHeading: "",
     thoughtDesc: THOUGHTS.thoughtDesc,
   })
+  console.log(show)
+  let today = new Date()
+  let dd = String(today.getDate())
+  let mm = String(today.getMonth() + 1)
+  let yyyy = today.getFullYear()
+  today = mm + dd + yyyy
+  // console.log(today)
   const ref = useRef()
- 
+  useEffect(() => {
+    for (let i = 0; i < thoughtsList.length; i++) {
+      for (let x = 0; x < i; x++) {
+        if (thoughtsList[i][0] == today) {
+          setTHeading(thoughtsList[i][1])
+          break
+        }
+      }
+    }
+  }, [])
+
   const handleEdit = () => {
     setEdit(true)
   }
@@ -38,43 +56,24 @@ const Home = () => {
   const handleShare = () => {
     setShare(!share)
   }
+
   const ComponentToPrint = forwardRef((props, ref) => {
     return (
-      <div className="app-container" ref={ref}>
-        <div className={`message-box ${bgColor}`}>
-          {edit ? (
-            <div className="edit">
-              <span className="close" onClick={handleClose}>
-                X
-              </span>
-              <input
-                type="text"
-                placeholder={thoughts.thoughtHeading}
-                value={tHeading}
-                onChange={handleHeadingOnChange}
-              />
-              <input
-                type="text"
-                placeholder={thoughts.thoughtDesc}
-                value={tDescription}
-                onChange={handleDescOnChange}
-              />
-            </div>
-          ) : (
-            <div>
-              <p>{thoughts.thoughtHeading}</p>
-              <p>{thoughts.thoughtDesc}</p>
-            </div>
-          )}
+      <div className="print-container" ref={ref}>
+        <div className={`message-box main-box ${bgColor}`}>
+          <div>
+            <p>{tHeading}</p>
+            <p>{thoughts.thoughtDesc}</p>
+          </div>
         </div>
       </div>
     )
   })
   return (
     <div className="home-container">
-      <header>
+      <header className={`${show ? "show": ""}`}>
         <div className="menu">
-        <div className="pencil menu-item" />
+          <div className="pencil menu-item mobile-none" />
           {!edit ? (
             <div className="pencil menu-item" onClick={handleEdit}>
               <img src="/images/pencil.svg" alt="pencil" />
@@ -82,6 +81,7 @@ const Home = () => {
           ) : (
             <div className="pencil menu-item" />
           )}
+          {!edit ? (
           <ReactToPrint content={() => ref.current}>
             <PrintContextConsumer>
               {({ handlePrint }) => (
@@ -91,6 +91,9 @@ const Home = () => {
               )}
             </PrintContextConsumer>
           </ReactToPrint>
+          ):(
+            <div className="pencil menu-item" />
+          )}
           <div className="share menu-item" onClick={handleShare}>
             <img src="/images/share.svg" alt="share" />
           </div>
@@ -118,7 +121,29 @@ const Home = () => {
           </div>
         )}
       </header>
-      <ComponentToPrint ref={ref} />
+      {edit ? (
+        <div className={`message-box ${bgColor}`}>
+          <div className="edit">
+            <span className="close" onClick={handleClose}>
+              X
+            </span>
+            <input
+              type="text"
+              placeholder={thoughts.thoughtHeading}
+              value={tHeading}
+              onChange={handleHeadingOnChange}
+            />
+            <input
+              type="text"
+              placeholder={thoughts.thoughtDesc}
+              value={tDescription}
+              onChange={handleDescOnChange}
+            />
+          </div>
+        </div>
+      ) : (
+        <ComponentToPrint ref={ref} />
+      )}
     </div>
   )
 }
