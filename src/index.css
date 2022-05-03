@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 .app-container {
-  width: 90%;
+  max-width: 992px;
   margin: auto;
   position: relative;
 }
@@ -49,16 +49,24 @@ header {
 .color-palletsmenu-item .white {
   background-color: white;
 }
+.print-container {
+  width: 70%;
+  margin: auto;
+}
+.main-box {
+  width: 100% !important;
+}
 .message-box {
-  width: 100%;
+  width: 70%;
   border: solid 1px;
   border-radius: 17px;
   box-sizing: border-box;
   padding: 30px;
+  margin: auto;
   margin-top: 50px;
 }
 .message-box p {
-  font-size: 3vw;
+  font-size: 1.5rem;
 }
 .testimonials {
   display: flex;
@@ -150,11 +158,18 @@ form {
 .edit input {
   border-radius: 5px;
   outline: none;
-  font-size: 26px;
+  font-size: 1.5rem;
   padding: 11px;
   border: 1px solid;
   margin: 12px 0;
   background-color: transparent;
+}
+.toggle-menu {
+  width: 30px;
+  margin-left: auto;
+  margin-right: 24px;
+  margin-top: 56px;
+  display: none;
 }
 .close {
   position: absolute;
@@ -168,7 +183,7 @@ form {
 }
 .home-btn {
   width: 40px;
-  margin-top: 80px;
+  margin-top: 44px;
   margin-bottom: -90px;
   margin-left: 5%;
 }
@@ -211,13 +226,40 @@ form {
   opacity: 50%;
   cursor: pointer;
 }
-@media screen and (max-width:992px){
-  form{
+@media screen and (max-width: 992px) {
+  form {
     width: 100%;
   }
 }
-@media screen and (max-width:480px){
-  form{
+@media screen and (max-width: 768px) {
+  .toggle-menu {
+    display: block;
+  }
+  .mobile-none {
+    display: none;
+  }
+  header {
+    flex-direction: column;
+    position: absolute;
+    top: -26%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: top 1s;
+    width: fit-content;
+  }
+  .show {
+    top: 5%;
+    transition: top 1s;
+    }
+  .color-icon {
+    margin: 15px;
+  }
+  .menu-item {
+    padding: 0 30px;
+  }
+}
+@media screen and (max-width: 480px) {
+  form {
     width: 100%;
     padding: 0;
   }
@@ -226,5 +268,12 @@ form {
   }
   .menu-item {
     padding-right: 16px;
+  }
+  .Demo__some-network {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 85px;
   }
 }
