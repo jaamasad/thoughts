@@ -100,19 +100,24 @@ header {
 .contact-container h1 {
   text-align: center;
   margin-bottom: 12px;
+  margin-top: 100px;
 }
 .input-label {
   display: flex;
   align-items: baseline;
   padding: 6px 0;
+  justify-content: center;
 }
 .input-label input {
   width: 50%;
   height: 20px;
 }
-.input-label label {
-  font-size: 24px;
+.input-label textarea {
   width: 50%;
+}
+.input-label label {
+  font-size: 18px;
+  width: 30%;
 }
 form {
   padding: 12px 100px;
@@ -227,9 +232,6 @@ form {
   cursor: pointer;
 }
 @media screen and (max-width: 992px) {
-  form {
-    width: 100%;
-  }
 }
 @media screen and (max-width: 768px) {
   .toggle-menu {
