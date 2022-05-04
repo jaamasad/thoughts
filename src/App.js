@@ -6,7 +6,6 @@ import Testimonials from "./component/pages/Testimonials"
 import Contact from "./component/pages/Contact"
 
 const App = () => {
-  const [show, setShow]=useState(false)
   return (
     <div className="App">
       <div className="app-container">
@@ -15,10 +14,9 @@ const App = () => {
             <img src="/images/home.svg" alt="" />
           </a>
         </div>
-        <div className="toggle-menu" onClick={()=>setShow(!show)}><img src="/images/bars.svg" alt="" /></div>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Home show={show} />} />
+            <Route exact path="/" element={<Home />} />
             <Route exact path="/testimonials" element={<Testimonials />} />
             <Route exact path="/Contact" element={<Contact />} />
           </Routes>

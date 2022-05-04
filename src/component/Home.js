@@ -8,7 +8,8 @@ const THOUGHTS = {
   thoughtHeading: "You are a natural",
   thoughtDesc: "Organize a toy drive this holiday season",
 }
-const Home = ({show}) => {
+const Home = () => {
+  const [show, setShow] = useState(false)
   const [bgColor, setBgColor] = useState("")
   const [edit, setEdit] = useState(false)
   const [share, setShare] = useState(false)
@@ -18,13 +19,11 @@ const Home = ({show}) => {
     thoughtHeading: "",
     thoughtDesc: THOUGHTS.thoughtDesc,
   })
-  console.log(show)
   let today = new Date()
   let dd = String(today.getDate())
   let mm = String(today.getMonth() + 1)
   let yyyy = today.getFullYear()
   today = mm + dd + yyyy
-  // console.log(today)
   const ref = useRef()
   useEffect(() => {
     for (let i = 0; i < thoughtsList.length; i++) {
@@ -71,7 +70,10 @@ const Home = ({show}) => {
   })
   return (
     <div className="home-container">
-      <header className={`${show ? "show": ""}`}>
+      <div className="toggle-menu" onClick={() => setShow(!show)}>
+        <img src="/images/bars.svg" alt="" />
+      </div>
+      <header className={`${show ? "show" : ""}`}>
         <div className="menu">
           <div className="pencil menu-item mobile-none" />
           {!edit ? (
@@ -82,16 +84,16 @@ const Home = ({show}) => {
             <div className="pencil menu-item" />
           )}
           {!edit ? (
-          <ReactToPrint content={() => ref.current}>
-            <PrintContextConsumer>
-              {({ handlePrint }) => (
-                <div className="print menu-item" onClick={handlePrint}>
-                  <img src="/images/print.svg" alt="print" />
-                </div>
-              )}
-            </PrintContextConsumer>
-          </ReactToPrint>
-          ):(
+            <ReactToPrint content={() => ref.current}>
+              <PrintContextConsumer>
+                {({ handlePrint }) => (
+                  <div className="print menu-item" onClick={handlePrint}>
+                    <img src="/images/print.svg" alt="print" />
+                  </div>
+                )}
+              </PrintContextConsumer>
+            </ReactToPrint>
+          ) : (
             <div className="pencil menu-item" />
           )}
           <div className="share menu-item" onClick={handleShare}>
