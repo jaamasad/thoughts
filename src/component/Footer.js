@@ -16,7 +16,7 @@ const Footer = () => {
    <a href="/contact">Contact</a>
    <a href="/testimonials">Testimonials</a>
    </div>
-   <p className="visitor-counter">Visitor Counter: <span>23</span></p>
+   {/* <p className="visitor-counter">Visitor Counter: <span>23</span></p> */}
   </div>
  </div>;
 }
