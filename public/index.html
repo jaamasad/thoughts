@@ -1,13 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+
     <title>Datewise thoughts</title>
   </head>
   <body>
     <div id="root"></div>
+    <div style="width: 100%; margin: auto; text-align: center">
+      visitors <span id="visits"></span>
+    </div>
   </body>
+  <script
+    src="https://monumental-youtiao-6fc7cb.netlify.app/visits?callback=liveViews"
+    async
+  ></script>
+  <script>
+    function liveViews(response) {
+      document.getElementById("visits").innerText = response.value
+    }
+  </script>
 </html>
