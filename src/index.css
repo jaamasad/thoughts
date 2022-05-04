@@ -68,23 +68,29 @@ header {
 .message-box p {
   font-size: 1.5rem;
 }
+.testimonials-container {
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
 .testimonials {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: -100px;
+  margin-top: 50px;
 }
 .testimonials .quates {
-  font-size: 11rem;
-  color: #037d91;
-  font-family: "fangsong" !important;
-  font-weight: 900;
+  width: 74px;
+}
+.testimonials .quates img {
+  width: 100%;
 }
 .testimonials .quates:first-child {
-  margin-top: -40px;
+  margin-top: -80px;
 }
 .testimonials .quates:last-child {
-  margin-top: 90px;
+  margin-top: 40px;
 }
 .print-arrea {
   display: none;
