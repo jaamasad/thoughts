@@ -127,21 +127,23 @@ form {
 .captcha-container {
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 .submit {
   background: #85e0e9;
   border: solid 1px;
   border-radius: 7px;
-  padding: 5px 18px;
-  width: fit-content;
+  width: -moz-fit-content;
+  width: 115px;
   margin: auto;
-  display: flex;
-  margin-left: 50%;
+  margin-left: 40%;
   margin-top: 12px;
   cursor: pointer;
+  height: 34px;
 }
 .captcha-box {
   align-items: center;
+  position: relative;
 }
 .bg-orange {
   background-color: orange;
@@ -230,6 +232,13 @@ form {
 .social-icon:hover {
   opacity: 50%;
   cursor: pointer;
+}
+.captcha-error {
+  position: absolute;
+  top: 89%;
+  font-size: 12px;
+  color: red;
+  left: 40%;
 }
 @media screen and (max-width: 992px) {
 }
