@@ -3,31 +3,62 @@ import emailjs from "emailjs-com"
 import SuccessAnimation from "actually-accessible-react-success-animation"
 
 const Contact = () => {
+  const [formValues, setFormValues] = useState({
+    first_name: "",
+    last_name: "",
+    user_email: "",
+    message: "",
+  })
   const [loading, setLoading] = useState(false)
   const [captchaValue, setCaptchaValue] = useState("")
   const [inputValue, setInputValue] = useState("")
   const [captchaError, setCaptchaError] = useState("")
   const [ok, setOk] = useState(false)
+  const [showOk, setShowOk] = useState(false)
+  const [errorMessage, setErrorMessage] = useState({
+    first_name: "",
+    last_name: "",
+    user_email: "",
+    message: "",
+  })
 
   function sendEmail(e) {
     e.preventDefault()
-    if (inputValue == captchaValue) {
-      setLoading(true)
-      emailjs
-        .sendForm(
-          "service_1i7daai",
-          "template_bmtc9ff",
-          e.target,
-          "0-YVWV0bRBJEFuEdh"
-        )
-        .then((res) => {
-          setLoading(false)
-          console.log(res)
-          setOk(true)
-          // window.location.reload(false)
-        })
+    if (!formValues.first_name) {
+      setErrorMessage({
+        first_name: "Please enter first name",
+      })
+    } else if (!formValues.last_name) {
+      setErrorMessage({
+        last_name: "Please enter last name",
+      })
+    } else if (!formValues.user_email) {
+      setErrorMessage({
+        user_email: "Please enter email",
+      })
+    } else if (!formValues.message) {
+      setErrorMessage({
+        message: "Please enter message",
+      })
     } else {
-      setCaptchaError("Captcha not matched")
+      if (inputValue == captchaValue) {
+        emailjs
+          .sendForm(
+            "service_1i7daai",
+            "template_bmtc9ff",
+            e.target,
+            "0-YVWV0bRBJEFuEdh"
+          )
+          .then((res) => {
+            setLoading(false)
+            setOk(true)
+            setTimeout(() => {
+              setShowOk(true)
+            }, 3000)
+          })
+      } else {
+        setCaptchaError("Captcha not matched")
+      }
     }
   }
   useEffect(() => {
@@ -39,7 +70,20 @@ const Contact = () => {
       text += possible.charAt(Math.floor(Math.random() * possible.length))
     setCaptchaValue(text)
   }, [])
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+  }
 
+  const handleOkClick=()=>{
+    setOk(false)
+    setFormValues({
+      first_name: "",
+    last_name: "",
+    user_email: "",
+    message: "",
+    })
+  }
   return (
     <div className="contact-container">
       {ok ? (
@@ -49,7 +93,10 @@ const Contact = () => {
             color="#5cb85c"
             liveRegion="live"
           />
-          <button className="success-btn" onClick={() => setOk(false)}>
+          <button
+            className={`success-btn ${showOk ? "btn-show" : ""}`}
+            onClick={handleOkClick}
+          >
             Ok
           </button>
         </div>
@@ -59,15 +106,33 @@ const Contact = () => {
           <form onSubmit={sendEmail}>
             <div className="input-label">
               <label htmlFor="">First Name*</label>
-              <input type="text" name="first_name" required />
+              <input
+                type="text"
+                name="first_name"
+                value={formValues.first_name}
+                onChange={handleChange}
+              />
+              <span className="error-msg">{errorMessage.first_name}</span>
             </div>
             <div className="input-label">
               <label htmlFor="">Last Name*</label>
-              <input type="text" name="last_name" required />
+              <input
+                type="text"
+                name="last_name"
+                value={formValues.last_name}
+                onChange={handleChange}
+              />
+              <span className="error-msg">{errorMessage.last_name}</span>
             </div>
             <div className="input-label">
               <label htmlFor="">Email*</label>
-              <input type="email" name="user_email" required />
+              <input
+                type="email"
+                name="user_email"
+                value={formValues.user_email}
+                onChange={handleChange}
+              />
+              <span className="error-msg">{errorMessage.user_email}</span>
             </div>
             <div className="input-label">
               <label htmlFor="">Message*</label>
@@ -76,8 +141,10 @@ const Contact = () => {
                 id=""
                 cols="30"
                 rows="5"
-                required
+                value={formValues.message}
+                onChange={handleChange}
               ></textarea>
+              <span className="error-msg">{errorMessage.message}</span>
             </div>
             <div className="input-label captcha-box">
               <label htmlFor="">Enter Code Above*</label>
