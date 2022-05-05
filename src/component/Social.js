@@ -6,6 +6,8 @@ import {
   TwitterIcon,
   WhatsappShareButton,
   WhatsappIcon,
+  EmailShareButton,
+  EmailIcon,
 } from "react-share"
 const Social = ({ thoughts }) => {
   const shareUrl = "https://monumental-youtiao-6fc7cb.netlify.app/"
@@ -34,6 +36,14 @@ const Social = ({ thoughts }) => {
       >
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
+      <EmailShareButton
+            url={shareUrl}
+            subject={title}
+            body="body"
+            className="Demo__some-network__share-button"
+          >
+            <EmailIcon size={32} round />
+          </EmailShareButton>
     </div>
   )
 }
