@@ -42,6 +42,7 @@ const Contact = () => {
       })
     } else {
       if (inputValue == captchaValue) {
+        setLoading(true)
         emailjs
           .sendForm(
             "service_1i7daai",
