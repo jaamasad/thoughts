@@ -1,6 +1,6 @@
 import React, { useState, forwardRef, useRef, useEffect } from "react"
 // import Print from "./Print"
-import thoughtsList from "../assets/DateData"
+import {thoughtsList, reminderList} from "../assets/DateData"
 import Social from "./Social"
 import ReactToPrint, { PrintContextConsumer } from "react-to-print"
 
@@ -14,10 +14,10 @@ const Home = () => {
   const [edit, setEdit] = useState(false)
   const [share, setShare] = useState(false)
   const [tHeading, setTHeading] = useState("")
-  const [tDescription, setTDescription] = useState(THOUGHTS.thoughtDesc)
+  const [tDescription, setTDescription] = useState("")
   const [thoughts, setThoughts] = useState({
     thoughtHeading: "",
-    thoughtDesc: THOUGHTS.thoughtDesc,
+    thoughtDesc: "",
   })
   let today = new Date()
   let dd = String(today.getDate())
@@ -30,6 +30,14 @@ const Home = () => {
       for (let x = 0; x < i; x++) {
         if (thoughtsList[i][0] == today) {
           setTHeading(thoughtsList[i][1])
+          break
+        }
+      }
+    }
+    for (let y = 0; y < thoughtsList.length; y++) {
+      for (let z = 0; z < y; z++) {
+        if (reminderList[y][0] == today) {
+          setTDescription(reminderList[y][1])
           break
         }
       }
@@ -62,7 +70,7 @@ const Home = () => {
         <div className={`message-box main-box ${bgColor}`}>
           <div>
             <p>{tHeading}</p>
-            <p>{thoughts.thoughtDesc}</p>
+            <p>{tDescription}</p>
           </div>
         </div>
       </div>
@@ -99,7 +107,7 @@ const Home = () => {
           <div className="share menu-item" onClick={handleShare}>
             <img src="/images/share.svg" alt="share" />
           </div>
-          {share && <Social thoughts={thoughts} />}
+          {share && <Social tHeading={tHeading} tDescription={tDescription} />}
         </div>
 
         {!edit && (

@@ -9,9 +9,10 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share"
-const Social = ({ thoughts }) => {
+const Social = (props ) => {
+  const {tHeading, tDescription}=props
   const shareUrl = "https://monumental-youtiao-6fc7cb.netlify.app/"
-  const title = thoughts.thoughtHeading + ", " + thoughts.thoughtDesc
+  const title = tHeading + ", " + tDescription
   return (
     <div className="Demo__some-network">
       <FacebookShareButton
