@@ -55,7 +55,7 @@ const Contact = () => {
             setOk(true)
             setTimeout(() => {
               setShowOk(true)
-            }, 3000)
+            }, 2000)
           })
       } else {
         setCaptchaError("Captcha not matched")
@@ -75,15 +75,8 @@ const Contact = () => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
   }
-
   const handleOkClick=()=>{
-    setOk(false)
-    setFormValues({
-      first_name: "",
-    last_name: "",
-    user_email: "",
-    message: "",
-    })
+    window.location.reload();
   }
   return (
     <div className="contact-container">
