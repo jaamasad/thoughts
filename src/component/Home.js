@@ -1,13 +1,8 @@
 import React, { useState, forwardRef, useRef, useEffect } from "react"
-// import Print from "./Print"
-import {thoughtsList, reminderList} from "../assets/DateData"
+import { thoughtsList, reminderList } from "../assets/DateData"
 import Social from "./Social"
 import ReactToPrint, { PrintContextConsumer } from "react-to-print"
 
-const THOUGHTS = {
-  thoughtHeading: "You are a natural",
-  thoughtDesc: "Organize a toy drive this holiday season",
-}
 const Home = () => {
   const [show, setShow] = useState(false)
   const [bgColor, setBgColor] = useState("")
@@ -70,7 +65,7 @@ const Home = () => {
         <div className={`message-box main-box ${bgColor}`}>
           <div>
             <p>{tHeading}</p>
-            <p>{tDescription}</p>
+            <p className="reminder">{tDescription}</p>
           </div>
         </div>
       </div>

@@ -9,8 +9,8 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "react-share"
-const Social = (props ) => {
-  const {tHeading, tDescription}=props
+const Social = (props) => {
+  const { tHeading, tDescription } = props
   const shareUrl = "https://monumental-youtiao-6fc7cb.netlify.app/"
   const title = tHeading + ", " + tDescription
   return (
@@ -38,13 +38,13 @@ const Social = (props ) => {
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
       <EmailShareButton
-            url={shareUrl}
-            subject={title}
-            body="body"
-            className="Demo__some-network__share-button"
-          >
-            <EmailIcon size={32} round />
-          </EmailShareButton>
+        url={shareUrl}
+        subject={title}
+        body="body"
+        className="Demo__some-network__share-button"
+      >
+        <EmailIcon size={32} round />
+      </EmailShareButton>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import React, {useState} from "react"
+import React from "react"
 import Home from "./component/Home"
-import { Route, Routes, BrowserRouter, Link } from "react-router-dom"
+import { Route, Routes, BrowserRouter } from "react-router-dom"
 import Footer from "./component/Footer"
 import Testimonials from "./component/pages/Testimonials"
 import Contact from "./component/pages/Contact"
